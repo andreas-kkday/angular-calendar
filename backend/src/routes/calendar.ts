@@ -43,7 +43,7 @@ router.use((req, res, next) => {
   const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
-    process.env.FRONTEND_URL + "/auth/google/callback"
+    process.env.RENDER_EXTERNAL_URL + "/auth/google/callback"
   );
   oauth2Client.setCredentials(req.session.tokens);
 
@@ -91,7 +91,7 @@ router.get('/ical', async (req, res) => {
       const oauth2Client = new google.auth.OAuth2(
         process.env.GOOGLE_CLIENT_ID,
         process.env.GOOGLE_CLIENT_SECRET,
-        process.env.FRONTEND_URL + "/auth/google/callback"
+        process.env.RENDER_EXTERNAL_URL + "/auth/google/callback"
       );
       oauth2Client.setCredentials(tokens);
       calendarAuth = google.calendar({ version: 'v3', auth: oauth2Client });
