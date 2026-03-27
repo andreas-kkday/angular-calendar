@@ -151,6 +151,8 @@ app/**/*.js.map
 /.angular/cache
 .angular/
 
+.env
+
 
 ### Vue ###
 # gitignore template for Vue.js projects
