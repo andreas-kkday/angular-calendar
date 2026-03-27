@@ -1,12 +1,10 @@
+import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import cookieSession from 'cookie-session';
-import dotenv from 'dotenv';
 import authRoutes from './routes/auth';
 import calendarRoutes from './routes/calendar';
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
