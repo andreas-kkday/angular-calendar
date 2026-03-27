@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:4200',
+  origin: process.env.RENDER_EXTERNAL_URL || 'http://localhost:4200',
   credentials: true
 }));
 

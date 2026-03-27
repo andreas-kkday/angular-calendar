@@ -7,7 +7,7 @@ const getOAuth2Client = () => {
   return new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
-    process.env.GOOGLE_REDIRECT_URI
+    process.env.FRONTEND_URL + "/auth/google/callback"
   );
 };
 
@@ -30,10 +30,10 @@ router.get('/google/callback', async (req, res) => {
     const oauth2Client = getOAuth2Client();
     const { tokens } = await oauth2Client.getToken(code as string);
     req.session!.tokens = tokens;
-    res.redirect(process.env.FRONTEND_URL || 'http://localhost:4200');
+    res.redirect(process.env.RENDER_EXTERNAL_URL || 'http://localhost:4200');
   } catch (error) {
     console.error('Error in google callback:', error);
-    res.redirect(`${process.env.FRONTEND_URL}?error=auth_failed`);
+    res.redirect(`${process.env.RENDER_EXTERNAL_URL}?error=auth_failed`);
   }
 });
 
