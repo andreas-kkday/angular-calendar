@@ -19,7 +19,7 @@ export interface CalendarEvent {
   providedIn: 'root'
 })
 export class Api {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = '';
 
   constructor(private http: HttpClient) {}
 

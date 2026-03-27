@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import cors from 'cors';
 import cookieSession from 'cookie-session';
 import dotenv from 'dotenv';
@@ -25,6 +26,15 @@ app.use(cookieSession({
 
 app.use('/auth', authRoutes);
 app.use('/api/calendar', calendarRoutes);
+
+// Static files for Angular frontend
+const frontendPath = path.join(__dirname, '../../frontend/dist/frontend/browser');
+app.use(express.static(frontendPath));
+
+// Catch-all: serve index.html for any other route (handles Angular client-side routing)
+app.use((req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
